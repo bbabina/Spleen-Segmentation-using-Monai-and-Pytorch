@@ -35,11 +35,28 @@ https://monai.io/
   
 ### Model Training
 
-- Define the U-Net model architecture with the desired parameters (e.g., input channels, output channels, number of residual units).
-- Set up the loss function (Dice Loss), optimizer (Adam), and evaluation metric (Dice Metric).
-- Train the model using a DataLoader for both training and validation data.
-- Monitor training progress, track loss, and metric values.
-- Save checkpoints of the model's state, optimizer state, and training progress.
+To train the U-Net model for semantic segmentation, follow these steps:
+
+1. **Model Architecture Definition**: Define the U-Net model architecture according to your requirements. Specify parameters such as the number of input channels, output channels, and the number of residual units for the encoder and decoder.
+
+2. **Loss Function and Metrics**: Set up the loss function for training the model. For semantic segmentation, the Dice Loss is commonly used as it measures the overlap between predicted and ground truth segmentations. Additionally, select an evaluation metric such as the Dice Metric to assess the performance of the model during training and validation.
+
+3. **Optimizer Configuration**: Choose an optimizer for updating the model's parameters. The Adam optimizer is a popular choice due to its adaptive learning rate. Configure the optimizer with an appropriate learning rate.
+
+4. **DataLoader Setup**: Prepare training and validation datasets using DataLoader objects. Ensure that the data is properly formatted and transformed for input to the model. The DataLoader provides efficient batching and shuffling of data during training.
+
+5. **Training Loop**: Implement the training loop, iterating over batches of data. Within each iteration, perform the following steps:
+   - Zero the gradients of the model's parameters using `optimizer.zero_grad()`.
+   - Forward pass the input through the model to obtain predictions.
+   - Compute the loss between the predictions and the ground truth using the defined loss function.
+   - Backpropagate the gradients and update the model's parameters using `loss.backward()` and `optimizer.step()`.
+   - Track the running average of the loss for the current epoch.
+
+6. **Validation and Progress Tracking**: At regular intervals, evaluate the model on the validation dataset using the configured evaluation metric. Monitor the model's performance, both in terms of loss and the chosen metric, throughout training.
+
+
+![Learning curve](https://github.com/bbabina/Spleen-Segmentation-using-Monai-and-Pytorch/assets/74191100/91176326-9d05-45cb-9cc1-35b52b50d7fa)
+
 
 ### Visualization
 
@@ -52,7 +69,9 @@ https://monai.io/
 
 The results of the model training and evaluation, including loss curves, Dice metric values, and visualization of segmentation outputs, are saved in the specified directory.
 
+![output](https://github.com/bbabina/Spleen-Segmentation-using-Monai-and-Pytorch/assets/74191100/6f39ea1b-a740-48bc-96e9-f4e4644e8931)
 
-![Learning curve](https://github.com/bbabina/Spleen-Segmentation-using-Monai-and-Pytorch/assets/74191100/91176326-9d05-45cb-9cc1-35b52b50d7fa)
+
+
 
 
